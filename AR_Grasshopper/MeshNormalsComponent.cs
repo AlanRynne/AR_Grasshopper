@@ -41,6 +41,12 @@ namespace AR_Grasshopper
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
+            pManager.AddVectorParameter("Area Weighted", "Aw", "Area weighted normals", GH_ParamAccess.list);
+            pManager.AddVectorParameter("Angle Weighted", "AngW", "Angle weighted normals", GH_ParamAccess.list);
+            pManager.AddVectorParameter("Equally Weighted", "Ew", "Equally weighted normals", GH_ParamAccess.list);
+            pManager.AddVectorParameter("Sphere Inscribed", "Sph", "Sphere inscribed normals", GH_ParamAccess.list);
+            pManager.AddVectorParameter("Gauss Curvature", "Gauss", "Gauss curvature normals", GH_ParamAccess.list);
+            pManager.AddVectorParameter("Mean Curvature", "Mean", "Mean curvature normals", GH_ParamAccess.list);
             pManager.AddTextParameter("out", "out", "out", GH_ParamAccess.item);
         }
 
@@ -59,70 +65,37 @@ namespace AR_Grasshopper
             HE_Mesh hE_Mesh = new HE_Mesh();
 
             AR_Rhino.FromRhinoMesh(mesh, out hE_Mesh);
+            List<Vector3d> areaWeightedNormals = new List<Vector3d>();
+            List<Vector3d> angleWeightedNormals = new List<Vector3d>();
+            List<Vector3d> equalWeightedNormals = new List<Vector3d>();
+            List<Vector3d> sphereInscribedNormals = new List<Vector3d>();
+            List<Vector3d> gaussCurvatureNormals = new List<Vector3d>();
+            List<Vector3d> meanCurvatureNormals = new List<Vector3d>();
 
-            DA.SetData(0, hE_Mesh);
+            foreach (HE_Vertex v in hE_Mesh.Vertices)
+            {
+                AR_Lib.Geometry.Vector3d vect = AR_Lib.Geometry.HE_MeshGeometry.VertexNormalAreaWeighted(v);
+                areaWeightedNormals.Add(new Vector3d(vect.X, vect.Y, vect.Z));
+                vect = AR_Lib.Geometry.HE_MeshGeometry.VertexNormalAngleWeighted(v);
+                angleWeightedNormals.Add(new Vector3d(vect.X, vect.Y, vect.Z));
+                vect = AR_Lib.Geometry.HE_MeshGeometry.VertexNormalEquallyWeighted(v);
+                equalWeightedNormals.Add(new Vector3d(vect.X, vect.Y, vect.Z));
+                vect = AR_Lib.Geometry.HE_MeshGeometry.VertexNormalSphereInscribed(v);
+                sphereInscribedNormals.Add(new Vector3d(vect.X, vect.Y, vect.Z));
+                vect = AR_Lib.Geometry.HE_MeshGeometry.VertexNormalGaussCurvature(v);
+                gaussCurvatureNormals.Add(new Vector3d(vect.X, vect.Y, vect.Z));
+                vect = AR_Lib.Geometry.HE_MeshGeometry.VertexNormalMeanCurvature(v);
+                meanCurvatureNormals.Add(new Vector3d(vect.X, vect.Y, vect.Z));
+            }
+            DA.SetDataList(0, areaWeightedNormals);
+            DA.SetDataList(1, angleWeightedNormals);
+            DA.SetDataList(2, equalWeightedNormals);
+            DA.SetDataList(3, sphereInscribedNormals);
+            DA.SetDataList(4, gaussCurvatureNormals);
+            DA.SetDataList(5, meanCurvatureNormals);
+            DA.SetData(6, hE_Mesh); 
         }
 
-
-        public static class AR_Rhino
-        {
-            public static RhinoMeshResult ToRhinoMesh(HE_Mesh mesh, out Mesh rhinoMesh)
-            {
-                //CHECKS FOR NGON MESHES!
-                if (mesh.isNgonMesh())
-                {
-                    rhinoMesh = null;
-                    return RhinoMeshResult.Invalid;
-                }
-
-                rhinoMesh = new Rhino.Geometry.Mesh();
-
-                foreach (HE_Vertex vertex in mesh.Vertices)
-                {
-                    rhinoMesh.Vertices.Add(vertex.X, vertex.Y, vertex.Z);
-                }
-
-                foreach (HE_Face face in mesh.Faces)
-                {
-                    List<HE_Vertex> faceVertices = face.adjacentVertices();
-                    if (faceVertices.Count == 3) rhinoMesh.Faces.AddFace(new Rhino.Geometry.MeshFace(faceVertices[0].Index, faceVertices[1].Index, faceVertices[2].Index));
-                    if (faceVertices.Count == 4) rhinoMesh.Faces.AddFace(new Rhino.Geometry.MeshFace(faceVertices[0].Index, faceVertices[1].Index, faceVertices[2].Index, faceVertices[3].Index));
-                }
-
-                return RhinoMeshResult.OK;
-
-            }
-
-            public static RhinoMeshResult FromRhinoMesh(Rhino.Geometry.Mesh rhinoMesh, out HE_Mesh mesh)
-            {
-                List<AR_Lib.Geometry.Point3d> vertices = new List<AR_Lib.Geometry.Point3d>();
-                List<List<int>> faceVertexIndexes = new List<List<int>>();
-
-                foreach (Rhino.Geometry.Point3d vertex in rhinoMesh.Vertices)
-                {
-                    vertices.Add(new AR_Lib.Geometry.Point3d(vertex.X, vertex.Y, vertex.Z));
-                }
-                foreach (Rhino.Geometry.MeshNgon face in rhinoMesh.GetNgonAndFacesEnumerable())
-                {
-
-                    List<int> list = new List<int>();
-
-                    foreach (int i in face.BoundaryVertexIndexList()) list.Add(i);
-
-                    faceVertexIndexes.Add(list);
-
-                }
-                mesh = new HE_Mesh(vertices, faceVertexIndexes);
-                return RhinoMeshResult.OK;
-            }
-
-            public enum RhinoMeshResult
-            {
-                OK,
-                Empty,
-                Invalid
-            }
-        }
 
 
         /// <summary>

@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AR_Rhino.cs" />
     <Compile Include="MeshNormalsComponent.cs" />
     <Compile Include="AR_GrasshopperInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
