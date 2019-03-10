@@ -10,7 +10,7 @@ namespace AR_Grasshopper
         {
             get
             {
-                return "ARGrasshopper";
+                return "AR_Grasshopper";
             }
         }
         public override Bitmap Icon
@@ -26,7 +26,7 @@ namespace AR_Grasshopper
             get
             {
                 //Return a short string describing the purpose of this GHA library.
-                return "";
+                return "Component that utilizes the AR_Lib library for triangular mesh calculations";
             }
         }
         public override Guid Id
@@ -42,7 +42,7 @@ namespace AR_Grasshopper
             get
             {
                 //Return a string identifying you or your company.
-                return "";
+                return "Alan Rynne";
             }
         }
         public override string AuthorContact
@@ -50,7 +50,7 @@ namespace AR_Grasshopper
             get
             {
                 //Return a string representing your preferred contact details.
-                return "";
+                return "www.rynne.es / www.paramdigma.com";
             }
         }
     }
