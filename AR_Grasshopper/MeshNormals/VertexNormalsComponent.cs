@@ -141,6 +141,12 @@ namespace AR_Grasshopper
 
             AR_Rhino.FromRhinoMesh(mesh, out hE_Mesh);
 
+            if (!hE_Mesh.isTriangularMesh())
+            {
+                AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Mesh is not triangular!");
+                return;
+            }
+
             List<Vector3d> normals = new List<Vector3d>();
 
             foreach (HE_Vertex v in hE_Mesh.Vertices)

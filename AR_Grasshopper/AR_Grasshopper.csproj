@@ -33,7 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AR_Lib">
-      <HintPath>..\..\AR_GeometryLibrary\AR_Lib\bin\Debug\netstandard2.0\AR_Lib.dll</HintPath>
+      <HintPath>..\..\AR_Lib\bin\Debug\netstandard2.0\AR_Lib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -64,6 +64,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AR_Rhino.cs" />
+    <Compile Include="MeshUtilities\VertexCurvatureComponent.cs" />
+    <Compile Include="MeshUtilities\FaceOrthonormalBasesComponent.cs" />
     <Compile Include="MeshNormals\VertexNormalsComponent.cs" />
     <Compile Include="AR_GrasshopperInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -91,6 +93,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +101,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AR_Lib-VertexNormals.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AR_Lib-FaceOrthonormalBases.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AR_Lib-VertexCurvature.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

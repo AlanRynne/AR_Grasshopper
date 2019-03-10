@@ -73,6 +73,26 @@ namespace AR_Grasshopper.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AR_Lib_FaceOrthonormalBases {
+            get {
+                object obj = ResourceManager.GetObject("AR_Lib_FaceOrthonormalBases", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap AR_Lib_VertexCurvature {
+            get {
+                object obj = ResourceManager.GetObject("AR_Lib_VertexCurvature", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap AR_Lib_VertexNormals {
             get {
                 object obj = ResourceManager.GetObject("AR_Lib_VertexNormals", resourceCulture);
