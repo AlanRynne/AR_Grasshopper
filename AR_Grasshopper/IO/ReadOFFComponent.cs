@@ -40,19 +40,7 @@ namespace AR_Grasshopper.IO
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            Mesh mesh = new Mesh();
 
-            if (!DA.GetData(0, ref mesh)) return;
-
-            HE_Mesh hE_Mesh = new HE_Mesh();
-
-            AR_Rhino.FromRhinoMesh(mesh, out hE_Mesh);
-
-            if (!hE_Mesh.isTriangularMesh())
-            {
-                AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Mesh is not triangular!");
-                return;
-            }
         }
 
         /// <summary>
@@ -64,7 +52,7 @@ namespace AR_Grasshopper.IO
             {
                 //You can add image files to your project resources and access them like this:
                 // return Resources.IconForThisComponent;
-                return null;
+                return Properties.Resources.AR_Lib_ReadOFF;
             }
         }
 

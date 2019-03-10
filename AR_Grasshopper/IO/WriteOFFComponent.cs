@@ -23,6 +23,8 @@ namespace AR_Grasshopper.IO
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
+            pManager.AddMeshParameter("Mesh", "M", "Mesh", GH_ParamAccess.item);
+            pManager.AddPathParameter("File Path", "P", "File Path", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -30,6 +32,7 @@ namespace AR_Grasshopper.IO
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
+            pManager.AddBooleanParameter("Success", "OK", "True if operation succeded", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -62,7 +65,7 @@ namespace AR_Grasshopper.IO
             {
                 //You can add image files to your project resources and access them like this:
                 // return Resources.IconForThisComponent;
-                return null;
+                return Properties.Resources.AR_Lib_WriteOFF;
             }
         }
 
