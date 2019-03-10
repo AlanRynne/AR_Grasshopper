@@ -112,6 +112,12 @@
   <ItemGroup>
     <None Include="Resources\AR_Lib-VertexCurvature.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AR_Lib-WriteOFF.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AR_Lib-ReadOFF.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
