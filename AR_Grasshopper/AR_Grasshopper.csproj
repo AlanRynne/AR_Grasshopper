@@ -64,6 +64,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AR_Rhino.cs" />
+    <Compile Include="IO\ReadOFFComponent.cs" />
+    <Compile Include="IO\WriteOFFComponent.cs" />
+    <Compile Include="MeshCurves\LevelSetsComponent.cs" />
+    <Compile Include="MeshCurves\StartDirGeodesic.cs" />
     <Compile Include="MeshUtilities\VertexCurvatureComponent.cs" />
     <Compile Include="MeshUtilities\FaceOrthonormalBasesComponent.cs" />
     <Compile Include="MeshNormals\VertexNormalsComponent.cs" />
