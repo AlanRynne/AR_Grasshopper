@@ -12,9 +12,9 @@ namespace AR_Grasshopper.MeshTopology
         /// Initializes a new instance of the VertexTopology class.
         /// </summary>
         public VertexTopology()
-          : base("VertexTopology", "Nickname",
-              "Description",
-              "Category", "Subcategory")
+          : base("Vertex Topology", "Vert. Topo",
+              "Computes the vertex adjacency data for the given mesh.",
+              "AR_Lib", "Topology")
         {
         }
 
@@ -23,6 +23,7 @@ namespace AR_Grasshopper.MeshTopology
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
+            pManager.AddMeshParameter("Mesh", "M", "Mesh", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -30,6 +31,7 @@ namespace AR_Grasshopper.MeshTopology
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
+
         }
 
         /// <summary>

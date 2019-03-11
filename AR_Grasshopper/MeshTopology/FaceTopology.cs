@@ -12,9 +12,9 @@ namespace AR_Grasshopper.MeshTopology
         /// Initializes a new instance of the FaceTopology class.
         /// </summary>
         public FaceTopology()
-          : base("FaceTopology", "Nickname",
-              "Description",
-              "Category", "Subcategory")
+          : base("Face Topology", "Face Topo",
+              "Computes the face adjacency data for the given mesh",
+              "AR_Lib", "Topology")
         {
         }
 
@@ -23,6 +23,7 @@ namespace AR_Grasshopper.MeshTopology
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
+            pManager.AddMeshParameter("Mesh", "M", "Mesh", GH_ParamAccess.item);
         }
 
         /// <summary>
