@@ -25,7 +25,7 @@ namespace AR_Grasshopper.MeshCurves
         {
             pManager.AddMeshParameter("Mesh", "M", "Triangular Mesh", GH_ParamAccess.item);
             pManager.AddNumberParameter("Scalar values", "V", "List of numerical values to place on each vertex of the mesh", GH_ParamAccess.list);
-            pManager.AddNumberParameter("Step size", "step", "Step size of the level set curves", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Step size", "S", "Step size of the level set curves", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace AR_Grasshopper.MeshCurves
         {
             pManager.AddCurveParameter("Level Sets", "L", "Level set curves on the mesh", GH_ParamAccess.list);
         }
-
+        
         /// <summary>
         /// This is the method that actually does the work.
         /// </summary>
@@ -67,7 +67,7 @@ namespace AR_Grasshopper.MeshCurves
             {
                 //You can add image files to your project resources and access them like this:
                 // return Resources.IconForThisComponent;
-                return null;
+                return Properties.Resources.AR_Lib_LevelSets;
             }
         }
 
