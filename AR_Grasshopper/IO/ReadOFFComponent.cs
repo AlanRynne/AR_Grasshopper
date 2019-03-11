@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AR_Lib.HalfEdgeMesh;
+using AR_Lib.IO;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 
@@ -23,7 +24,7 @@ namespace AR_Grasshopper.IO
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddPathParameter("File Path", "P", "File path to read .off from", GH_ParamAccess.item);
+            pManager.AddTextParameter("File Path", "P", "File path to read .off from", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -40,7 +41,41 @@ namespace AR_Grasshopper.IO
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
+            string path = "";
+            Mesh rhinoMesh = new Mesh();
 
+            if (!DA.GetData(0, ref path)) return;
+
+            OFFMeshData data;
+            OFFResult result = OFFReader.ReadMeshFromFile(path, out data);
+
+            switch (result)
+            {
+                case OFFResult.File_Not_Found:
+                    AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "File not found.");
+                    return;
+                case OFFResult.Incorrect_Face:
+                    AddRuntimeMessage(GH_RuntimeMessageLevel.Error, ".OFF file has incorrect face");
+                    return;
+                case OFFResult.Incorrect_Vertex:
+                    AddRuntimeMessage(GH_RuntimeMessageLevel.Error, ".OFF file has incorrect vertex");
+                    return;
+                case OFFResult.Incorrect_Format:
+                    AddRuntimeMessage(GH_RuntimeMessageLevel.Error, ".OFF file has incorrect format");
+                    return;
+                case OFFResult.Non_Matching_Faces_Size:
+                    AddRuntimeMessage(GH_RuntimeMessageLevel.Error, ".OFF file has non-matching faces size");
+                    return;
+                case OFFResult.Non_Matching_Vertices_Size:
+                    AddRuntimeMessage(GH_RuntimeMessageLevel.Error, ".OFF file has non-matching vertices size");
+                    return;
+            }
+
+            HE_Mesh mesh = new HE_Mesh(data.vertices, data.faces);
+
+            AR_Rhino.ToRhinoMesh(mesh, out rhinoMesh);
+
+            DA.SetData(0, rhinoMesh);
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using AR_Lib.HalfEdgeMesh;
 using Grasshopper.Kernel;
@@ -24,7 +25,7 @@ namespace AR_Grasshopper.IO
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddMeshParameter("Mesh", "M", "Mesh", GH_ParamAccess.item);
-            pManager.AddPathParameter("File Path", "P", "File Path", GH_ParamAccess.item);
+            pManager.AddTextParameter("File Path", "P", "File Path", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -32,7 +33,6 @@ namespace AR_Grasshopper.IO
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddBooleanParameter("Success", "OK", "True if operation succeded", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -42,8 +42,15 @@ namespace AR_Grasshopper.IO
         protected override void SolveInstance(IGH_DataAccess DA)
         {
             Mesh mesh = new Mesh();
+            string filePath = "";
 
             if (!DA.GetData(0, ref mesh)) return;
+            if (!DA.GetData(1, ref filePath)) return;
+
+            if(!Directory.Exists(Path.GetDirectoryName(filePath)))
+            {
+                AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Specified location doesn't exist!");
+            }
 
             HE_Mesh hE_Mesh = new HE_Mesh();
 
@@ -53,6 +60,13 @@ namespace AR_Grasshopper.IO
             {
                 AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Mesh is not triangular!");
                 return;
+            }
+
+            AR_Lib.IO.OFFResult result = AR_Lib.IO.OFFWritter.WriteMeshToFile(hE_Mesh, filePath);
+
+            if (result == AR_Lib.IO.OFFResult.OK)
+            {
+                AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Export failed! :(");
             }
         }
 
