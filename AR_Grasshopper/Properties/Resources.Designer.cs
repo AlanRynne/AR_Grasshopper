@@ -83,6 +83,26 @@ namespace AR_Grasshopper.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AR_Lib_GeodesicStartDir {
+            get {
+                object obj = ResourceManager.GetObject("AR_Lib_GeodesicStartDir", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap AR_Lib_LevelSets {
+            get {
+                object obj = ResourceManager.GetObject("AR_Lib_LevelSets", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap AR_Lib_ReadOFF {
             get {
                 object obj = ResourceManager.GetObject("AR_Lib_ReadOFF", resourceCulture);
