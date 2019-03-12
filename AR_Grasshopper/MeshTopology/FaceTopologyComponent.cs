@@ -6,14 +6,14 @@ using Rhino.Geometry;
 
 namespace AR_Grasshopper.MeshTopology
 {
-    public class VertexTopology : GH_Component
+    public class FaceTopologyComponent : GH_Component
     {
         /// <summary>
-        /// Initializes a new instance of the VertexTopology class.
+        /// Initializes a new instance of the FaceTopology class.
         /// </summary>
-        public VertexTopology()
-          : base("Vertex Topology", "Vert. Topo",
-              "Computes the vertex adjacency data for the given mesh.",
+        public FaceTopologyComponent()
+          : base("Face Topology", "Face Topo",
+              "Computes the face adjacency data for the given mesh",
               "AR_Lib", "Topology")
         {
         }
@@ -31,7 +31,6 @@ namespace AR_Grasshopper.MeshTopology
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-
         }
 
         /// <summary>
@@ -60,7 +59,7 @@ namespace AR_Grasshopper.MeshTopology
         /// </summary>
         public override Guid ComponentGuid
         {
-            get { return new Guid("77b54c47-084b-4174-a761-969b6a699581"); }
+            get { return new Guid("9044ea40-e6d9-4a9f-97ba-fb85bf5ed429"); }
         }
     }
 }

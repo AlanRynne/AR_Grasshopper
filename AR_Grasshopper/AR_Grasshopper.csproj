@@ -69,9 +69,9 @@
     <Compile Include="MeshCurves\LevelSetsComponent.cs" />
     <Compile Include="MeshCurves\StartDirGeodesic.cs" />
     <Compile Include="MeshNormals\FaceNormalsComponent.cs" />
-    <Compile Include="MeshTopology\EdgeTopology.cs" />
-    <Compile Include="MeshTopology\FaceTopology.cs" />
-    <Compile Include="MeshTopology\VertexTopology.cs" />
+    <Compile Include="MeshTopology\EdgeTopologyComponent.cs" />
+    <Compile Include="MeshTopology\FaceTopologyComponent.cs" />
+    <Compile Include="MeshTopology\VertexTopologyComponent.cs" />
     <Compile Include="MeshUtilities\VertexCurvatureComponent.cs" />
     <Compile Include="MeshUtilities\FaceOrthonormalBasesComponent.cs" />
     <Compile Include="MeshNormals\VertexNormalsComponent.cs" />

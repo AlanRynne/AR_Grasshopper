@@ -6,12 +6,12 @@ using Rhino.Geometry;
 
 namespace AR_Grasshopper.MeshTopology
 {
-    public class EdgeTopology : GH_Component
+    public class EdgeTopologyComponent : GH_Component
     {
         /// <summary>
         /// Initializes a new instance of the EdgeTopology class.
         /// </summary>
-        public EdgeTopology()
+        public EdgeTopologyComponent()
           : base("Edge Topology", "Edge Topo",
               "Computes the edge adjacency data for the given mesh",
               "AR_Lib", "Topology")
