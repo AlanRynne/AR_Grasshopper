@@ -64,7 +64,7 @@ namespace AR_Grasshopper.IO
 
             AR_Lib.IO.OFFResult result = AR_Lib.IO.OFFWritter.WriteMeshToFile(hE_Mesh, filePath);
 
-            if (result == AR_Lib.IO.OFFResult.OK)
+            if (result != AR_Lib.IO.OFFResult.OK)
             {
                 AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Export failed! :(");
             }
