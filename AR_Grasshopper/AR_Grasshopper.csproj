@@ -68,6 +68,7 @@
     <Compile Include="IO\WriteOFFComponent.cs" />
     <Compile Include="MeshCurves\LevelSetsComponent.cs" />
     <Compile Include="MeshCurves\StartDirGeodesic.cs" />
+    <Compile Include="MeshNormals\FaceNormalsComponent.cs" />
     <Compile Include="MeshTopology\EdgeTopology.cs" />
     <Compile Include="MeshTopology\FaceTopology.cs" />
     <Compile Include="MeshTopology\VertexTopology.cs" />

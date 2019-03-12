@@ -23,7 +23,7 @@ namespace AR_Grasshopper
         /// new tabs/panels will automatically be created.
         /// </summary>
         public VertexNormals()
-          : base("Mesh Normals", "Normals",
+          : base("Mesh Normals", " V Norm",
               "Computes the mesh normals in several ways.\n\n" +
                 "You can select the different options in tºnhe right-click menu of this component:\n\n" +
                 "- Equally weighted normals\n" +
