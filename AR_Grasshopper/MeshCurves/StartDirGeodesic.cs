@@ -33,7 +33,7 @@ namespace AR_Grasshopper.MeshCurves
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddCurveParameter("Geodeesic", "G", "Computed geodesic curve on the mesh", GH_ParamAccess.item);
+            pManager.AddCurveParameter("Geodesic", "G", "Computed geodesic curve on the mesh", GH_ParamAccess.item);
         }
 
         /// <summary>
