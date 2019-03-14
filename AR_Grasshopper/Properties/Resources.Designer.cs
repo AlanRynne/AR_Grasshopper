@@ -103,6 +103,16 @@ namespace AR_Grasshopper.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AR_Lib_Param_HalfEdgeMesh {
+            get {
+                object obj = ResourceManager.GetObject("AR_Lib_Param_HalfEdgeMesh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap AR_Lib_ReadOFF {
             get {
                 object obj = ResourceManager.GetObject("AR_Lib_ReadOFF", resourceCulture);

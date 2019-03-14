@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AR_Rhino.cs" />
+    <Compile Include="HE_MeshParam.cs" />
     <Compile Include="IO\ReadOFFComponent.cs" />
     <Compile Include="IO\WriteOFFComponent.cs" />
     <Compile Include="MeshCurves\LevelSetsComponent.cs" />
@@ -128,7 +129,9 @@
   <ItemGroup>
     <None Include="Resources\AR_Lib-GeodesicStartDir.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\AR_Lib-Param-HalfEdgeMesh.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -130,6 +130,9 @@
   <data name="AR_Lib_LevelSets" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AR_Lib-LevelSets.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="AR_Lib_Param_HalfEdgeMesh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AR_Lib-Param-HalfEdgeMesh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="AR_Lib_ReadOFF" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AR_Lib-ReadOFF.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
