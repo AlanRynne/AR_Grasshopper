@@ -143,6 +143,16 @@ namespace AR_Grasshopper.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AR_Lib_TopologyVEF {
+            get {
+                object obj = ResourceManager.GetObject("AR_Lib_TopologyVEF", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap AR_Lib_TopologyVertex {
             get {
                 object obj = ResourceManager.GetObject("AR_Lib_TopologyVertex", resourceCulture);
