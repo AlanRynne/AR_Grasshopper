@@ -221,7 +221,6 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
-
 # GhostDoc plugin setting file
 *.GhostDoc.xml
 
@@ -260,3 +259,6 @@ paket-files/
 __pycache__/
 *.pyc
 *.DS_Store
+
+
+.vscode/
