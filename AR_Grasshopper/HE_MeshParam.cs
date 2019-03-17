@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-using Grasshopper;
 using Grasshopper.Kernel;
+using Grasshopper.Kernel.Types;
 
 using AR_Lib.HalfEdgeMesh;
-using Grasshopper.Kernel.Types;
+
 using Rhino.Geometry;
 
 namespace AR_Grasshopper
