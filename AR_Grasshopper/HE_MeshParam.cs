@@ -16,12 +16,18 @@ namespace AR_Grasshopper
     public class HE_MeshGHData : GH_Goo<HE_Mesh>
 
     {
-
+        /// <summary>
+        /// Constructs an empty MeshGHData object
+        /// </summary>
         public HE_MeshGHData()
         {
             this.Value = null;
         }
 
+        /// <summary>
+        /// Constructs a MeshGHData object from a Rhino.Geometry.Mesh
+        /// </summary>
+        /// <param name="mesh">A Rhino Mesh</param>
         public HE_MeshGHData(Rhino.Geometry.Mesh mesh)
         {
             HE_Mesh hE;
@@ -29,11 +35,19 @@ namespace AR_Grasshopper
             this.Value = hE;
         }
 
+        /// <summary>
+        /// Constructs a MeshGHData object from an AR_Lib HalfEdgeMesh
+        /// </summary>
+        /// <param name="hE_mesh">A Half-Edge Mesh</param>
         public HE_MeshGHData(HE_Mesh hE_mesh)
         {
             this.Value = hE_mesh;
         }
 
+        /// <summary>
+        /// Returns true if object is valid.
+        /// TODO: Currently it ALWAYS returns true.
+        /// </summary>
         public override bool IsValid => true;
 
         public override string TypeName => "Half-Edge Mesh";
@@ -44,7 +58,6 @@ namespace AR_Grasshopper
 
         public override string ToString() => "Half-Edge Mesh";
 
-        // Return the Integer we use to represent the TriState flag.
         public override object ScriptVariable()
         {
             return Value;
@@ -53,18 +66,20 @@ namespace AR_Grasshopper
         public override bool CastFrom(object source)
         {
             if (source == null) { return false; }
-
-            Mesh mesh = (source as GH_Mesh).Value;
-            if (mesh != null)
+            if (source is GH_Mesh)
             {
-                if (AR_Rhino.FromRhinoMesh(mesh, out HE_Mesh hE) == AR_Rhino.RhinoMeshResult.OK)
+                Mesh mesh = (source as GH_Mesh).Value;
+                if (mesh != null)
                 {
-                    Value = hE;
-                    return true;
-                }
-                else
-                {
-                    return false;
+                    if (AR_Rhino.FromRhinoMesh(mesh, out HE_Mesh hE) == AR_Rhino.RhinoMeshResult.OK)
+                    {
+                        Value = hE;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
             }
 
@@ -94,6 +109,9 @@ namespace AR_Grasshopper
         }
     }
 
+    /// <summary>
+    /// Grasshopper GH_Param encapsulating a MeshGHData object.
+    /// </summary>
     public class HE_MeshParam: GH_Param<HE_MeshGHData>
     {
         // We need to supply a constructor without arguments that calls the base class constructor.

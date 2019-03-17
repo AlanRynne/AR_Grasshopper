@@ -24,7 +24,7 @@ namespace AR_Grasshopper.MeshCurves
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddMeshParameter("Mesh", "M", "Triangular Mesh", GH_ParamAccess.item);
+            pManager.AddParameter(new HE_MeshParam(), "Half-Edge Mesh", "hE", "Half-Edge Mesh", GH_ParamAccess.item);
             pManager.AddNumberParameter("Scalar values", "V", "List of numerical values to place on each vertex of the mesh", GH_ParamAccess.list);
             pManager.AddNumberParameter("Levels", "L", "List of levels to compute", GH_ParamAccess.list);
         }
@@ -43,18 +43,16 @@ namespace AR_Grasshopper.MeshCurves
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            Mesh mesh = new Mesh();
+            HE_MeshGHData hE_MeshData = new HE_MeshGHData();
             List<double> scalarValues = new List<double>();
             List<double> levels = new List<double>();
             string key = "sets1";
 
-            if (!DA.GetData(0, ref mesh)) return;
+            if (!DA.GetData(0, ref hE_MeshData)) return;
             if (!DA.GetDataList(1, scalarValues)) return;
             if (!DA.GetDataList(2, levels)) return;
 
-            HE_Mesh hE_Mesh = new HE_Mesh();
-
-            AR_Rhino.FromRhinoMesh(mesh, out hE_Mesh);
+            HE_Mesh hE_Mesh = hE_MeshData.Value;
 
             // Check for invalid inputs
             if (!hE_Mesh.isTriangularMesh())
@@ -69,14 +67,15 @@ namespace AR_Grasshopper.MeshCurves
             }
             if (scalarValues.Count == 0)
             {
-                AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Level count can't be 0!");
+                AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Value count can't be 0!");
                 return;
 
             }
             // Assign values to mesh vertices
             foreach (HE_Vertex v in hE_Mesh.Vertices)
-            {
-                v.UserValues.Add(key, scalarValues[v.Index]); 
+            {   
+                if (v.UserValues.ContainsKey(key)) v.UserValues[key] = scalarValues[v.Index];
+                else v.UserValues.Add(key, scalarValues[v.Index]); 
             }
 
             // Compute level sets

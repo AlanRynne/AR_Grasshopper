@@ -44,7 +44,7 @@ namespace AR_Grasshopper
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddMeshParameter("Mesh", "M", "Mesh", GH_ParamAccess.item);
+            pManager.AddParameter(new HE_MeshParam(), "Half-Edge Mesh", "hE", "Half-Edge Mesh", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -133,13 +133,11 @@ namespace AR_Grasshopper
         /// to store data in output parameters.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            Mesh mesh = new Mesh();
+            HE_MeshGHData hE_MeshData = new HE_MeshGHData();
 
-            if (!DA.GetData(0, ref mesh)) return;
+            if (!DA.GetData(0, ref hE_MeshData)) return;
 
-            HE_Mesh hE_Mesh = new HE_Mesh();
-
-            AR_Rhino.FromRhinoMesh(mesh, out hE_Mesh);
+            HE_Mesh hE_Mesh = hE_MeshData.Value;
 
             if (!hE_Mesh.isTriangularMesh())
             {

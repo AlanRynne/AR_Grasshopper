@@ -132,6 +132,15 @@
   <ItemGroup>
     <None Include="Resources\AR_Lib-Param-HalfEdgeMesh.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AR_Lib-TopologyEdge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AR_Lib-TopologyFace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AR_Lib-TopologyVertex.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -23,7 +23,7 @@ namespace AR_Grasshopper.MeshTopology
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddMeshParameter("Mesh", "M", "Mesh", GH_ParamAccess.item);
+            pManager.AddParameter(new HE_MeshParam(), "Half-Edge Mesh", "hE", "Half-Edge Mesh", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace AR_Grasshopper.MeshTopology
             {
                 //You can add image files to your project resources and access them like this:
                 // return Resources.IconForThisComponent;
-                return null;
+                return Properties.Resources.AR_Lib_TopologyEdge;
             }
         }
 
