@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using AR_Lib.HalfEdgeMesh;
+using Grasshopper;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 
@@ -31,6 +32,9 @@ namespace AR_Grasshopper.MeshTopology
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
+            pManager.AddIntegerParameter("VV", "VV", "VV", GH_ParamAccess.tree);
+            pManager.AddIntegerParameter("VE", "VE", "VE", GH_ParamAccess.tree);
+            pManager.AddIntegerParameter("VF", "VF", "VF", GH_ParamAccess.tree);
 
         }
 
@@ -40,6 +44,36 @@ namespace AR_Grasshopper.MeshTopology
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
+            HE_MeshGHData hE_MeshData = new HE_MeshGHData();
+
+            if (!DA.GetData(0, ref hE_MeshData)) return;
+
+            HE_Mesh hE_Mesh = hE_MeshData.Value;
+
+            HE_MeshTopology topo = new HE_MeshTopology(hE_Mesh);
+
+            topo.computeVertexAdjacency();
+
+            DataTree<int> vvTopo = new DataTree<int>();
+            DataTree<int> veTopo = new DataTree<int>();
+            DataTree<int> vfTopo = new DataTree<int>();
+
+            foreach (int key in topo.VertexVertex.Keys)
+            {
+                vvTopo.AddRange(topo.VertexVertex[key], new Grasshopper.Kernel.Data.GH_Path(key));
+            }
+            foreach (int key in topo.VertexEdges.Keys)
+            {
+                veTopo.AddRange(topo.VertexEdges[key], new Grasshopper.Kernel.Data.GH_Path(key));
+            }
+            foreach (int key in topo.VertexFaces.Keys)
+            {
+                vfTopo.AddRange(topo.VertexFaces[key], new Grasshopper.Kernel.Data.GH_Path(key));
+            }
+
+            DA.SetDataTree(0, vvTopo);
+            DA.SetDataTree(1, veTopo);
+            DA.SetDataTree(2, vfTopo);
         }
 
         /// <summary>

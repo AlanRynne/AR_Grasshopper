@@ -72,6 +72,7 @@
     <Compile Include="MeshNormals\FaceNormalsComponent.cs" />
     <Compile Include="MeshTopology\EdgeTopologyComponent.cs" />
     <Compile Include="MeshTopology\FaceTopologyComponent.cs" />
+    <Compile Include="MeshTopology\MeshTopologyVEFComponent.cs" />
     <Compile Include="MeshTopology\VertexTopologyComponent.cs" />
     <Compile Include="MeshUtilities\VertexCurvatureComponent.cs" />
     <Compile Include="MeshUtilities\FaceOrthonormalBasesComponent.cs" />
@@ -140,6 +141,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AR_Lib-TopologyVertex.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AR_Lib-TopologyVEF.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
