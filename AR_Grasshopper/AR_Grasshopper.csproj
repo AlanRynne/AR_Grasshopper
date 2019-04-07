@@ -78,6 +78,7 @@
     <Compile Include="MeshUtilities\FaceOrthonormalBasesComponent.cs" />
     <Compile Include="MeshNormals\VertexNormalsComponent.cs" />
     <Compile Include="AR_GrasshopperInfo.cs" />
+    <Compile Include="NurbsSurfaces\NurbsSurfaceTestComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
